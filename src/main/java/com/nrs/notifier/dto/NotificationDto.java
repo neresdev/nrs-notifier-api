@@ -1,11 +1,11 @@
 package com.nrs.notifier.dto;
 
-public class NotificationsDto {
+public class NotificationDto {
     private String type; // Create enum for this
     private String receiver;
     private String message;
 
-    public NotificationsDto(String type, String receiver, String message) {
+    public NotificationDto(String type, String receiver, String message) {
         this.type = type;
         this.receiver = receiver;
         this.message = message;

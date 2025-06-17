@@ -1,6 +1,6 @@
 package com.nrs.notifier.config;
 
-import com.nrs.notifier.dto.NotificationDto;
+import com.nrs.notifier.dto.NotificationMessage;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +21,7 @@ public class KafkaProducerConfig {
     private String kafkaBoostrapServers;
 
     @Bean
-    public ProducerFactory<String, NotificationDto> producerFactory() {
+    public ProducerFactory<String, NotificationMessage> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBoostrapServers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -30,7 +30,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, NotificationDto> kafkaTemplate() {
+    public KafkaTemplate<String, NotificationMessage> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailNotificationService implements NotificationService {
+public class EmailSendNotificationService implements SendNotificationService {
     
     @Value("${notifications.kafka.topic}")
     private String notificationsKafkaTopic;
     
     private final KafkaMessageProducerService kafkaMessageProducerService;
 
-    public EmailNotificationService(KafkaMessageProducerService kafkaMessageProducerService) {
+    public EmailSendNotificationService(KafkaMessageProducerService kafkaMessageProducerService) {
         this.kafkaMessageProducerService = kafkaMessageProducerService;
     }
 

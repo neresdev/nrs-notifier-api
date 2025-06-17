@@ -1,7 +1,7 @@
 package com.nrs.notifier.dto;
 
 public class NotificationDto {
-    private String type; // Create enum for this
+    private String type;
     private String receiver;
     private String message;
 

@@ -5,16 +5,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotificationFactory {
+public class SendNotificationFactory {
     private final ApplicationContext applicationContext;
 
-    public NotificationFactory(ApplicationContext applicationContext) {
+    public SendNotificationFactory(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
-    public NotificationService createNotificationService(final NotificationType notificationType) {
+    public SendNotificationService createNotificationService(final NotificationType notificationType) {
         if (notificationType == NotificationType.EMAIL) {
-            return (NotificationService) applicationContext.getBean("emailNotificationService");
+            return (SendNotificationService) applicationContext.getBean("emailSendNotificationService");
         }
         throw new IllegalArgumentException("Notification Type not implemented yet: " + notificationType);
     }

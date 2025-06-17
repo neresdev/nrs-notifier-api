@@ -20,7 +20,7 @@ de requisições HTTP, nessas requisições <strong>precisam</strong> ter os seg
 
 - Java 21
 - Maven 3.9.3+
-- Kafka 3.4.0 (recomendo utilizar [esse link](https://archive.apache.org/dist/kafka/3.4.0/kafka-3.4.0-src.tgz) de download)
+- Kafka 3.4.0 (recomendo utilizar o que está localizado na pasta local-setup)
 
 ### Executando localmente
 
@@ -52,20 +52,29 @@ variáveis configuradas, como a `MAVEN_HOME`)
 ### Iniciando o kafka
 ```shell
     # iniciar zookeeper
-    cd /usr/local/kafka
-    sudo bin/zookeeper-server-start.sh config/zookeeper.properties
+    sudo local-setup/kafka/bin/zookeeper-server-start.sh local-setup/kafka/config/zookeeper.properties
 
-    # iniciar iniciar o servidor do kafka
-    cd /usr/local/kafka
-    sudo bin/kafka-server-start.sh config/server.properties
+    # iniciar o primeiro broker kafka
+    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server.properties
+    
+    # iniciar o segundo broker kafka
+    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server2.properties
+    
+    # iniciar o terceiro broker kafka
+    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server3.properties
 
-    # create kafka topic
-    cd /usr/local/kafka
-    sudo bin/kafka-topics.sh --create --topic notifications --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
-
-    # OPCIONAL - Criar um consumidor para receber as mensagens produzida por essa API
-    cd /usr/local/kafka
-    sudo bin/kafka-console-consumer.sh --topic my-topic --from-beginning --bootstrap-server localhost:9092
+    # criar kafka topic
+    sudo local-setup/kafka/bin/kafka-topics.sh --create --topic notifications --bootstrap-server localhost:9092 --partitions 3 --replication-factor 3
+    
+    # opcional consumidor para o tópico de notificações na partição de E-mail
+    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 0 --from-beginning
+      
+      # opcional consumidor para o tópico de notificações na partição de SMS
+    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 1 --from-beginning
+      
+      # opcional consumidor para o tópico de notificações na partição de Whatsapp
+    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 2 --from-beginning
+ 
 
 ```
 ### Exemplo de requisições

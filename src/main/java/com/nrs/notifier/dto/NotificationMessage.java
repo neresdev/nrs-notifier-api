@@ -1,11 +1,11 @@
 package com.nrs.notifier.dto;
 
-public class NotificationDto {
+public class NotificationMessage {
     private String type;
     private String receiver;
     private String message;
 
-    public NotificationDto(String type, String receiver, String message) {
+    public NotificationMessage(String type, String receiver, String message) {
         this.type = type;
         this.receiver = receiver;
         this.message = message;

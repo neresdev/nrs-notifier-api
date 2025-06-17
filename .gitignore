@@ -3,8 +3,9 @@
 
 # Log file
 *.log
-**log/*
-**logs/*
+**log/**
+**logs/**
+local-setup/kafka/logs/**
 
 # BlueJ files
 *.ctxt

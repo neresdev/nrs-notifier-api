@@ -60,21 +60,12 @@ variáveis configuradas, como a `MAVEN_HOME`)
     # iniciar o segundo broker kafka
     sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server2.properties
     
-    # iniciar o terceiro broker kafka
-    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server3.properties
-
-    # criar kafka topic
-    sudo local-setup/kafka/bin/kafka-topics.sh --create --topic notifications --bootstrap-server localhost:9092 --partitions 3 --replication-factor 3
+    # criar o tópico kafka para enviar as notificações de e-mail
+    sudo local-setup/kafka/bin/kafka-topics.sh --create --topic email-notifications --bootstrap-server localhost:9092 --partitions 2 --replication-factor 2
     
-    # opcional consumidor para o tópico de notificações na partição de E-mail
-    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 0 --from-beginning
+    # opcional consumidor para o tópico de notificações por e-mail
+    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic email-notifications --from-beginning
       
-      # opcional consumidor para o tópico de notificações na partição de SMS
-    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 1 --from-beginning
-      
-      # opcional consumidor para o tópico de notificações na partição de Whatsapp
-    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications --partition 2 --from-beginning
- 
 
 ```
 ### Exemplo de requisições

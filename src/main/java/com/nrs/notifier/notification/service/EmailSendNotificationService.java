@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailSendNotificationService implements SendNotificationService {
     
-    @Value("${notifications.kafka.topic}")
-    private String notificationsKafkaTopic;
+    @Value("${email.notifications.kafka.topic}")
+    private String emailTopic;
     
     private final KafkaMessageProducerService kafkaMessageProducerService;
 
@@ -20,6 +20,6 @@ public class EmailSendNotificationService implements SendNotificationService {
 
     @Override
     public void send(final NotificationMessage notificationMessage) {
-        kafkaMessageProducerService.sendMessage(notificationsKafkaTopic, NotificationType.EMAIL.getId(), notificationMessage);
+        kafkaMessageProducerService.sendMessage(emailTopic, notificationMessage);
     }
 }

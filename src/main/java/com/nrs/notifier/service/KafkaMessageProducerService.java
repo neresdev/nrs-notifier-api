@@ -4,8 +4,6 @@ import com.nrs.notifier.dto.NotificationMessage;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class KafkaMessageProducerService {
 
@@ -15,7 +13,7 @@ public class KafkaMessageProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(final String topic, final int partition, final NotificationMessage message) {
-        kafkaTemplate.send(topic, partition, UUID.randomUUID().toString(), message);
+    public void sendMessage(final String topic, final NotificationMessage message) {
+        kafkaTemplate.send(topic, message);
     }
 }

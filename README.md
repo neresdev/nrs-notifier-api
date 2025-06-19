@@ -26,7 +26,7 @@ de requisições HTTP, nessas requisições <strong>precisam</strong> ter os seg
 
 - Clone o repositório
   ``` shell
-    git clone https://archive.apache.org/dist/kafka/3.4.0/kafka-3.4.0-src.tgz
+    git clone git@github.com:neresdev/nrs-notifier-api.git
   ```
 <br />
 

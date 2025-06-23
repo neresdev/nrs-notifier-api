@@ -52,19 +52,19 @@ variáveis configuradas, como a `MAVEN_HOME`)
 ### Iniciando o kafka
 ```shell
     # iniciar zookeeper
-    sudo local-setup/kafka/bin/zookeeper-server-start.sh local-setup/kafka/config/zookeeper.properties
+    sudo /usr/local/kafka/bin/zookeeper-server-start.sh /usr/local/kafka/config/zookeeper.properties
 
     # iniciar o primeiro broker kafka
-    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server.properties
+    sudo /usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties
     
     # iniciar o segundo broker kafka
-    sudo local-setup/kafka/bin/kafka-server-start.sh local-setup/kafka/config/server2.properties
+    sudo /usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server2.properties
     
     # criar o tópico kafka para enviar as notificações de e-mail
-    sudo local-setup/kafka/bin/kafka-topics.sh --create --topic email-notifications --bootstrap-server localhost:9092 --partitions 2 --replication-factor 2
+    sudo /usr/local/kafka/bin/kafka-topics.sh --create --topic email-notifications --bootstrap-server localhost:9092 --partitions 2 --replication-factor 2
     
     # opcional consumidor para o tópico de notificações por e-mail
-    sudo local-setup/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic email-notifications --from-beginning
+    sudo /usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic email-notifications --from-beginning
       
 
 ```
@@ -77,8 +77,8 @@ variáveis configuradas, como a `MAVEN_HOME`)
       --header 'User-Agent: insomnia/10.3.1' \
       --data '{
         "type": "EMAIL",
-        "receiver": "Nina85@example.net",
-        "message": "MESSAGE FROM 2025-06-14T12:34:18.494Z"
+        "receiver": "neresdev@gmail.com",
+        "message": "mensagem do readme"
     }'
 ```
 
